@@ -103,7 +103,7 @@ class TimedQuiz(Quiz):
                 print(" Correct!")
                 self.score += 1
             else:
-                print("❌ Incorrect.")
+                print("Incorrect.")
             print(f"Correct answer: {q.answer}")
             print("-"*40)
         print(f"Quiz complete! Your score: {self.score}/{len(self.questions)}\n")

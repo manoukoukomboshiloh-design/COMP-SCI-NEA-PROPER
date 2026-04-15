@@ -4,7 +4,7 @@ def setup_full_database():
     con = sqlite3.connect('user_data.db')
     cur = con.cursor()
 
-    # Quizzes table
+    # This will store every quiz attempt my users will have
     cur.execute('''
     CREATE TABLE IF NOT EXISTS quizzes (
         id INTEGER PRIMARY KEY,
@@ -15,7 +15,7 @@ def setup_full_database():
         FOREIGN KEY(user_id) REFERENCES userdata(id)
     )
     ''')
-    # Results table (quiz results per question)
+    # This will keep the results of each persons quiz and hopefully will be displayed as part of the dashboard and leaderboard
     cur.execute('''
     CREATE TABLE IF NOT EXISTS results (
         id INTEGER PRIMARY KEY,
@@ -27,7 +27,7 @@ def setup_full_database():
         FOREIGN KEY(question_id) REFERENCES questions(id)
     )
     ''')
-    # Progress table (summary)
+    # Important part of the NEA showing the user their strongest and weakest areas
     cur.execute('''
     CREATE TABLE IF NOT EXISTS progress (
         id INTEGER PRIMARY KEY,

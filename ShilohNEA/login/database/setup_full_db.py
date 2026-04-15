@@ -4,25 +4,6 @@ def setup_full_database():
     con = sqlite3.connect('user_data.db')
     cur = con.cursor()
 
-    # Users table
-    cur.execute('''
-    CREATE TABLE IF NOT EXISTS userdata (
-        id INTEGER PRIMARY KEY,
-        username VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL
-    )
-    ''')
-
-    # Questions table
-    cur.execute('''
-    CREATE TABLE IF NOT EXISTS questions (
-        id INTEGER PRIMARY KEY,
-        topic VARCHAR(255) NOT NULL,
-        question TEXT NOT NULL,
-        answer TEXT NOT NULL
-    )
-    ''')
-
     # Quizzes table
     cur.execute('''
     CREATE TABLE IF NOT EXISTS quizzes (
@@ -34,7 +15,6 @@ def setup_full_database():
         FOREIGN KEY(user_id) REFERENCES userdata(id)
     )
     ''')
-
     # Results table (quiz results per question)
     cur.execute('''
     CREATE TABLE IF NOT EXISTS results (
@@ -47,7 +27,6 @@ def setup_full_database():
         FOREIGN KEY(question_id) REFERENCES questions(id)
     )
     ''')
-
     # Progress table (summary)
     cur.execute('''
     CREATE TABLE IF NOT EXISTS progress (
@@ -59,10 +38,8 @@ def setup_full_database():
         FOREIGN KEY(user_id) REFERENCES userdata(id)
     )
     ''')
-
     con.commit()
     con.close()
-
 if __name__ == "__main__":
     setup_full_database()
     print("Database and tables created.")

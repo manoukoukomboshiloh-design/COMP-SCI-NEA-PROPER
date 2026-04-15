@@ -7,7 +7,7 @@ cur = conn.cursor()
 cur.execute("""
 CREATE TABLE IF NOT EXISTS userdata (
 id INTEGER PRIMARY KEY,
-username VARCHAR(255) NOT NULL,
+username VARCHAR(255) NOT NULL, UNIQUE
 password VARCHAR(255) NOT NULL
 )
 """)
